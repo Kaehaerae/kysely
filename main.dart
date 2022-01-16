@@ -7,7 +7,7 @@ main() async {
 
   var kysymykset = sanakirja['kysymykset'];
 
-  querySelector('#seuraava').onClick.listen((e) {
+  querySelector('#seuraava').onclick.listen((e) {
     kysymykset.shuffle();
     asetaKysymys(kysymykset[0]);
   });
