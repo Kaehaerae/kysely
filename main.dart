@@ -1,20 +1,26 @@
 import 'dart:html';
 
-main() async {
-  var osoite = 'kysymykset.json';
-  var sisalto = await HttpRequest.getString(osoite);
-  var sanakirja = jsonDecode(sisalto);
+main() {
+  var kysymykset = [];
 
-  var kysymykset = sanakirja['kysymykset'];
+  var vaihtoehdot = [];
+  vaihtoehdot.add({'teksti': 'Kyllä', 'oikein': true});
+  vaihtoehdot.add({'teksti': 'Ei', 'oikein': false});
 
-  querySelector('#seuraava').onclick.listen((e) {
+  kysymykset.add({
+    'teksti': 'Siistiä?',
+    'vaihtoehdot': vaihtoehdot
+  });
+
+  kysymykset.add({
+    'teksti': 'Toimiiko?',
+    'vaihtoehdot': vaihtoehdot
+  });
+
+  querySelector('#seuraava').onClick.listen((e) {
     kysymykset.shuffle();
     asetaKysymys(kysymykset[0]);
   });
-}
-asetaKysymys(kysymys) {
-  asetaKysymysteksti(kysymys['teksti']);
-  asetaVastausvaihtoehdot(kysymys['vaihtoehdot']);
 }
 
 asetaKysymysteksti(teksti) {
